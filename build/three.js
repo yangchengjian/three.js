@@ -22561,6 +22561,8 @@
 
 			_gl.clear( bits );
 
+			//_gl.drawBackground();
+
 		};
 
 		this.clearColor = function () {
@@ -23145,6 +23147,7 @@
 
 			scene.onBeforeRender( _this, scene, camera, renderTarget );
 
+	//        _projScreenMatrix.multiplyMatrices( camera.projectionMatrix.fromArray(_gl.getProjectMatrix()), camera.matrixWorldInverse.fromArray(_gl.getViewMatrix()) );
 			_projScreenMatrix.multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse );
 			_frustum.setFromMatrix( _projScreenMatrix );
 
