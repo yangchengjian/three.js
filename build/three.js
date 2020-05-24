@@ -22561,7 +22561,7 @@
 
 			_gl.clear( bits );
 
-			//_gl.drawBackground();
+			_gl.drawBackground();
 
 		};
 
