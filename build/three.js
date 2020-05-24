@@ -22561,7 +22561,7 @@
 
 			_gl.clear( bits );
 
-			//_gl.drawBackground();
+			_gl.drawBackground();
 
 		};
 
@@ -23147,8 +23147,8 @@
 
 			scene.onBeforeRender( _this, scene, camera, renderTarget );
 
-	//        _projScreenMatrix.multiplyMatrices( camera.projectionMatrix.fromArray(_gl.getProjectMatrix()), camera.matrixWorldInverse.fromArray(_gl.getViewMatrix()) );
-			_projScreenMatrix.multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse );
+	        _projScreenMatrix.multiplyMatrices( camera.projectionMatrix.fromArray(_gl.getProjectMatrix()), camera.matrixWorldInverse.fromArray(_gl.getViewMatrix()) );
+//			_projScreenMatrix.multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse );
 			_frustum.setFromMatrix( _projScreenMatrix );
 
 			_localClippingEnabled = this.localClippingEnabled;
