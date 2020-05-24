@@ -272,7 +272,9 @@
                 if (isHited < 0) {
 				    isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
 				} else {
-				    gl.getModelMatrixOnPlane(0);
+				    var matrix = new THREE.Matrix4()
+				    matrix.fromArray(gl.getModelMatrixOnPlane(0));
+				    scene.applyMatrix4(matrix);
 				}
 
 				stats.update();
