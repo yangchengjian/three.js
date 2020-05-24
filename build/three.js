@@ -22474,6 +22474,8 @@
 
 			this.setViewport( 0, 0, width, height );
 
+			_gl.onDisplayChanged(0, width, height);
+
 		};
 
 		this.getDrawingBufferSize = function () {
