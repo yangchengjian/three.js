@@ -268,12 +268,14 @@
 
 				requestAnimationFrame( animate );
 
+                scene.applyMatrix(gl.getProjMatrix() * gl.getViewMatrix() * gl.getModelMatrixOnPlane(isHited));
+				renderer.render( scene, camera );
+
 				if (isHited < 0) {
 					gl.onTouched(window.innerWidth / 2, window.innerHeight / 2);
 				}
 
-				scene.applyMatrix(gl.getProjMatrix() * gl.getViewMatrix() * gl.getModelMatrixOnPlane(isHited));
-				renderer.render( scene, camera );
+
 
 				stats.update();
 
