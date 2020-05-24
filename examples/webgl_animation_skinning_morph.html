@@ -55,6 +55,7 @@
 
 			var container, stats, clock, gui, mixer, actions, activeAction, previousAction;
 			var camera, scene, renderer, model, face;
+			var gl;
 
 			var api = { state: 'Walking' };
 
@@ -119,6 +120,12 @@
 				renderer.gammaOutput = true;
 				renderer.gammaFactor = 2.2;
 				container.appendChild( renderer.domElement );
+
+				gl = renderer.getContext();
+
+				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight)
+
+				index = gl.onTouched(400, 400);
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
@@ -260,6 +267,8 @@
 				if ( mixer ) mixer.update( dt );
 
 				requestAnimationFrame( animate );
+
+				gl.drawBackground();
 
 				renderer.render( scene, camera );
 
