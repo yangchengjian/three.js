@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>three.js webgl - skinning and morphing</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
+<head>
+    <title>three.js webgl - skinning and morphing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
 			body {
 				font-family: Monospace;
 				background-color: #000;
@@ -32,20 +32,21 @@
 			.dg.ac {
 				z-index: 999 !important;
 			}
-		</style>
-	</head>
 
-	<body>
+    </style>
+</head>
 
-		<script src="../build/three.js"></script>
+<body>
 
-		<script src="js/loaders/GLTFLoader.js"></script>
+<script src="../build/three.js"></script>
 
-		<script src="js/WebGL.js"></script>
-		<script src="js/libs/stats.min.js"></script>
-		<script src="js/libs/dat.gui.min.js"></script>
+<script src="js/loaders/GLTFLoader.js"></script>
 
-		<script>
+<script src="js/WebGL.js"></script>
+<script src="js/libs/stats.min.js"></script>
+<script src="js/libs/dat.gui.min.js"></script>
+
+<script>
 
 			if ( WEBGL.isWebGLAvailable() === false ) {
 
@@ -267,18 +268,19 @@
 
 				requestAnimationFrame( animate );
 
-				if (isHited >= 0) {
-					scene.applyMatrix(gl.getProjMatrix() * gl.getViewMatrix() * gl.getModelMatrixOnPlane(isHited));
-					renderer.render( scene, camera );
-				} else {
+				if (isHited < 0) {
 					gl.onTouched(window.innerWidth / 2, window.innerHeight / 2);
 				}
+
+				scene.applyMatrix(gl.getProjMatrix() * gl.getViewMatrix() * gl.getModelMatrixOnPlane(isHited));
+				renderer.render( scene, camera );
 
 				stats.update();
 
 			}
 
-		</script>
 
-	</body>
+</script>
+
+</body>
 </html>
