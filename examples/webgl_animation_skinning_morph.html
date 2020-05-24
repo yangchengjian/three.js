@@ -272,7 +272,12 @@
                 if (isHited < 0) {
 				    isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
 				} else {
-                    scene.position.copy( gl.getModelMatrixOnPlane(isHited) );
+				    <!--var p = new Matrix4();-->
+				    <!--var v = new Matrix4();-->
+				    <!--var m = new Matrix4();-->
+
+                    camera.projectionMatrix.fromArray(gl.getProjectMatrix())
+                    camera.matrixWorldInverse.fromArray(gl.getViewMatrix())
 				}
 
 				stats.update();
