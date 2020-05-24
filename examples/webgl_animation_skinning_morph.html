@@ -274,7 +274,7 @@
 				} else {
 				    var mat = new THREE.Matrix4()
 				    mat.fromArray(gl.getModelMatrixOnPlane(0));
-				    scene.matrix = mat;
+				    scene.matrix.premultiply(mat);
                     matrix.matrixAutoUpdate = false;
                     matrix.updateMatrixWorld(true);
 				}
