@@ -56,6 +56,7 @@
 			var container, stats, clock, gui, mixer, actions, activeAction, previousAction;
 			var camera, scene, renderer, model, face;
 			var gl;
+			var isHited = -1;
 
 			var api = { state: 'Walking' };
 
@@ -122,7 +123,6 @@
 				container.appendChild( renderer.domElement );
 
 				gl = renderer.getContext();
-				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight)
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
@@ -253,6 +253,8 @@
 
 				renderer.setSize( window.innerWidth, window.innerHeight );
 
+				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
+
 			}
 
 			//
@@ -265,9 +267,12 @@
 
 				requestAnimationFrame( animate );
 
-				<!--gl.drawBackground();-->
-
-				renderer.render( scene, camera );
+				if (isHited >= 0) {
+					scene.applyMatrix(gl.getProjMatrix() * gl.getViewMatrix() * gl.getModelMatrixOnPlane(isHited));
+					renderer.render( scene, camera );
+				} else {
+					gl.onTouched(window.innerWidth / 2, window.innerHeight / 2);
+				}
 
 				stats.update();
 
