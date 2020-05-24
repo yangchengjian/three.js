@@ -271,11 +271,9 @@
                 scene.applyMatrix(gl.getProjMatrix() * gl.getViewMatrix() * gl.getModelMatrixOnPlane(isHited));
 				renderer.render( scene, camera );
 
-				if (isHited < 0) {
-					gl.onTouched(window.innerWidth / 2, window.innerHeight / 2);
-				}
-
-
+				<!--if (isHited < 0) {-->
+					<!--gl.onTouched(window.innerWidth / 2, window.innerHeight / 2);-->
+				<!--}-->
 
 				stats.update();
 
