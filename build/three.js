@@ -23419,7 +23419,7 @@
 			object.onBeforeRender( _this, scene, camera, geometry, material, group );
 			currentRenderState = renderStates.get( scene, _currentArrayCamera || camera );
 
-			object.modelViewMatrix.multiplyMatrices( camera.matrixWorldInverse, object.matrixWorld.fromArray(_gl.getModelMatrixOnPlane(0)) );
+			object.modelViewMatrix.multiplyMatrices( camera.matrixWorldInverse, object.matrixWorld );
 			object.normalMatrix.getNormalMatrix( object.modelViewMatrix );
 
 			if ( object.isImmediateRenderObject ) {
