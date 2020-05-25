@@ -124,7 +124,7 @@
 				container.appendChild( renderer.domElement );
 
 				gl = renderer.getContext();
-				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
+				<!--gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);-->
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
@@ -271,9 +271,9 @@
 
                 if (isHited < 0) {
 				    isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
-				} else {
-				    <!--scene.matrixWorld.fromArray(gl.getModelMatrixOnPlane(0));-->
 				}
+
+
 
 				stats.update();
 
