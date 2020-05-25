@@ -267,13 +267,13 @@
 
 				requestAnimationFrame( animate );
 
-                camera.projectionMatrix.fromArray(gl.getProjectMatrix());
-                camera.matrixWorldInverse.fromArray(gl.getViewModelMatrixOnPlane(isHited));
-
 				renderer.render( scene, camera );
 
                 if (isHited < 0) {
 				    isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
+				} else {
+				    camera.projectionMatrix.fromArray(gl.getProjectMatrix());
+                    camera.matrixWorldInverse.fromArray(gl.getViewModelMatrixOnPlane(isHited));
 				}
 
 
