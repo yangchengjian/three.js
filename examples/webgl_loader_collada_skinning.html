@@ -131,6 +131,9 @@
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
+				gl = renderer.getContext();
+				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
+
 			}
 
 			function onWindowResize() {
@@ -161,7 +164,18 @@
 
 				}
 
-				renderer.render( scene, camera );
+				 if (isHited < 0) {
+                    renderer.render( scene, camera );
+
+				    isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
+
+				} else {
+
+				    camera.projectionMatrix.fromArray(gl.getProjectMatrix());
+                    camera.matrixWorldInverse.fromArray(gl.getViewModelMatrixOnPlane(isHited));
+
+                    renderer.render( scene, camera );
+				}
 
 			}
 
