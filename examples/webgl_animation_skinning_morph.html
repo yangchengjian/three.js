@@ -274,6 +274,7 @@
 				} else {
 				    camera.projectionMatrix.fromArray(gl.getProjectMatrix());
                     camera.matrixWorldInverse.fromArray(gl.getViewModelMatrixOnPlane(isHited));
+                    camera.updateProjectionMatrix();
 				}
 
 
