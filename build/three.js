@@ -23132,7 +23132,7 @@
 
 			// update camera matrices and frustum
 
-			if ( camera.parent === null ) camera.updateMatrixWorld();
+//			if ( camera.parent === null ) camera.updateMatrixWorld();
 
 			if ( vr.enabled ) {
 
