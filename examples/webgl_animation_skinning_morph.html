@@ -267,7 +267,7 @@
 
 				requestAnimationFrame( animate );
 
-                camera.projectionMatrix.fromArray(gl.getProjectMatrix();
+                camera.projectionMatrix.fromArray(gl.getProjectMatrix());
                 camera.matrixWorldInverse.fromArray(gl.getViewModelMatrixOnPlane(isHited));
 
 				renderer.render( scene, camera );
