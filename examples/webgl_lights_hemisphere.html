@@ -73,8 +73,6 @@
 				camera.position.set( 0, 0, 250 );
 
 				scene = new THREE.Scene();
-				//scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
-				//scene.fog = new THREE.Fog( scene.background, 1, 5000 );
 
 				// LIGHTS
 
@@ -93,13 +91,8 @@
 
 					var mesh = gltf.scene.children[ 0 ];
 
-					var s = 0.35;
+					var s = 0.035;
 					mesh.scale.set( s, s, s );
-					mesh.position.y = 15;
-					mesh.rotation.y = - 1;
-
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
 
 					scene.add( mesh );
 
@@ -131,9 +124,13 @@
 				window.addEventListener( 'resize', onWindowResize, false );
 				document.addEventListener( 'keydown', onKeyDown, false );
 
+
+				initGL();
+			}
+
+			function initGL() {
 				gl = renderer.getContext();
 				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
-
 			}
 
 			function onWindowResize() {
@@ -186,6 +183,13 @@
 
 				}
 
+				renderAR();
+
+				//renderer.render( scene, camera );
+
+			}
+
+			function renderAR() {
 				if (isHited < 0) {
    					renderer.render( scene, camera );
    					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
@@ -194,10 +198,7 @@
   					camera.matrixWorldInverse.fromArray(gl.getViewModelMatrixOnPlane(isHited));
 					renderer.render( scene, camera );
 				}
-				//renderer.render( scene, camera );
-
 			}
-
 		</script>
 	</body>
 </html>
