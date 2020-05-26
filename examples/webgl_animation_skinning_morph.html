@@ -256,7 +256,7 @@
 
 				if ( mixer ) mixer.update( dt );
 
-				requestAnimationFrame( animate );
+				reqxuestAnimationFrame( animate );
 
 				renderAR();
 				//renderer.render( scene, camera );
@@ -266,6 +266,9 @@
 			}
 
 			function renderAR() {
+
+				gl.drawBackground();
+
 				if (isHited < 0) {
    					renderer.render( scene, camera );
    					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
