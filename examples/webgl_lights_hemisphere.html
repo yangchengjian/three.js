@@ -96,6 +96,9 @@
 			var mixers = [];
 			var stats;
 
+			var gl;
+			var isHited = -1;
+
 			var clock = new THREE.Clock();
 
 			init();
@@ -109,8 +112,8 @@
 				camera.position.set( 0, 0, 250 );
 
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
-				scene.fog = new THREE.Fog( scene.background, 1, 5000 );
+				//scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
+				//scene.fog = new THREE.Fog( scene.background, 1, 5000 );
 
 				// LIGHTS
 
@@ -125,29 +128,29 @@
 
 				//
 
-				dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-				dirLight.color.setHSL( 0.1, 1, 0.95 );
-				dirLight.position.set( - 1, 1.75, 1 );
-				dirLight.position.multiplyScalar( 30 );
-				scene.add( dirLight );
+				//dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+				//dirLight.color.setHSL( 0.1, 1, 0.95 );
+				//dirLight.position.set( - 1, 1.75, 1 );
+				//dirLight.position.multiplyScalar( 30 );
+				//scene.add( dirLight );
 
-				dirLight.castShadow = true;
+				//dirLight.castShadow = true;
 
-				dirLight.shadow.mapSize.width = 2048;
-				dirLight.shadow.mapSize.height = 2048;
+				//dirLight.shadow.mapSize.width = 2048;
+				//dirLight.shadow.mapSize.height = 2048;
 
-				var d = 50;
+				//var d = 50;
 
-				dirLight.shadow.camera.left = - d;
-				dirLight.shadow.camera.right = d;
-				dirLight.shadow.camera.top = d;
-				dirLight.shadow.camera.bottom = - d;
+				//dirLight.shadow.camera.left = - d;
+				//dirLight.shadow.camera.right = d;
+				//dirLight.shadow.camera.top = d;
+				//dirLight.shadow.camera.bottom = - d;
 
-				dirLight.shadow.camera.far = 3500;
-				dirLight.shadow.bias = - 0.0001;
+				//dirLight.shadow.camera.far = 3500;
+				//dirLight.shadow.bias = - 0.0001;
 
-				dirLightHeper = new THREE.DirectionalLightHelper( dirLight, 10 );
-				scene.add( dirLightHeper );
+				//dirLightHeper = new THREE.DirectionalLightHelper( dirLight, 10 );
+				//scene.add( dirLightHeper );
 
 				// GROUND
 
@@ -174,7 +177,7 @@
 				};
 				uniforms.topColor.value.copy( hemiLight.color );
 
-				scene.fog.color.copy( uniforms.bottomColor.value );
+				//scene.fog.color.copy( uniforms.bottomColor.value );
 
 				var skyGeo = new THREE.SphereBufferGeometry( 4000, 32, 15 );
 				var skyMat = new THREE.ShaderMaterial( { vertexShader: vertexShader, fragmentShader: fragmentShader, uniforms: uniforms, side: THREE.BackSide } );
@@ -228,6 +231,9 @@
 				window.addEventListener( 'resize', onWindowResize, false );
 				document.addEventListener( 'keydown', onKeyDown, false );
 
+				gl = renderer.getContext();
+				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
+
 			}
 
 			function onWindowResize() {
@@ -280,7 +286,15 @@
 
 				}
 
-				renderer.render( scene, camera );
+				if (isHited < 0) {
+   					renderer.render( scene, camera );
+   					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
+				} else {
+  					camera.projectionMatrix.fromArray(gl.getProjectMatrix());
+  					camera.matrixWorldInverse.fromArray(gl.getViewModelMatrixOnPlane(isHited));
+					renderer.render( scene, camera );
+				}
+				//renderer.render( scene, camera );
 
 			}
 
