@@ -274,7 +274,7 @@
    					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
 				} else {
   					camera.projectionMatrix.fromArray(gl.getProjectMatrix());
-  					camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(3, 0));
+  					camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(3, 1));
 					renderer.render( scene, camera );
 				}
 			}
