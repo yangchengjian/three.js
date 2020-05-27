@@ -276,8 +276,11 @@
   					camera.projectionMatrix.fromArray(gl.getProjectMatrix());
   					camera.matrixWorldInverse.fromArray(gl.getViewMatrix());
 
-  					scene.matrixWorld.fromArray(gl.getModelMatrix(1, isHited));
-  					scene.autoUpdate = false;
+                    model.matrixWorld.fromArray(gl.getModelMatrix(1, isHited));
+                    model.matrixAutoUpdate = false;
+
+  					//scene.matrixWorld.fromArray(gl.getModelMatrix(1, isHited));
+  					//scene.autoUpdate = false;
 
 					renderer.render( scene, camera );
 				}
