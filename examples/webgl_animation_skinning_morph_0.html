@@ -262,7 +262,7 @@
 				} else {
 
 				    camera.projectionMatrix.fromArray(gl.getProjectMatrix());
-                    camera.matrixWorldInverse.fromArray(gl.getViewModelMatrixOnPlane(isHited));
+                    camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(1, isHited));
 
                     renderer.render( scene, camera );
 				}
