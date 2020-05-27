@@ -256,7 +256,7 @@
 
 				if ( mixer ) mixer.update( dt );
 
-				reqxuestAnimationFrame( animate );
+				requestAnimationFrame( animate );
 
 				renderAR();
 				//renderer.render( scene, camera );
@@ -267,7 +267,7 @@
 
 			function renderAR() {
 
-				gl.drawBackground();
+				//gl.drawBackground();
 
 				if (isHited < 0) {
    					renderer.render( scene, camera );
