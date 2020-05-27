@@ -155,7 +155,7 @@ function WebGLRenderer( parameters ) {
 
 		_viewport = new Vector4( 0, 0, _width, _height ),
 		_scissor = new Vector4( 0, 0, _width, _height ),
-		_scissorTest = false,
+		_scissorTest = false,render
 
 		// frustum
 
