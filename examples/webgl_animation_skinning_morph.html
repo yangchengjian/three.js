@@ -89,19 +89,6 @@
 
 				// model
 
-				var loader = new THREE.GLTFLoader();
-				loader.load( 'models/gltf/RobotExpressive/RobotExpressive.glb', function( gltf ) {
-
-					model = gltf.scene;
-					scene.add( model );
-
-					createGUI( model, gltf.animations );
-
-				}, undefined, function( e ) {
-
-					console.error( e );
-
-				} );
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -116,6 +103,8 @@
 				stats = new Stats();
 				container.appendChild( stats.dom );
 
+                createCube();
+
 				initGL();
 
 			}
@@ -125,6 +114,12 @@
 				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
 			}
 
+            function createCube() {
+                var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+                var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+                var cube = new THREE.Mesh( geometry, material );
+                scene.add( cube );
+            }
 			function createGUI( model, animations ) {
 
 				var states = [ 'Idle', 'Walking', 'Running', 'Dance', 'Death', 'Sitting', 'Standing' ];
