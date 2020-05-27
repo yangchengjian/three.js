@@ -92,8 +92,8 @@
 				var loader = new THREE.GLTFLoader();
 				loader.load( 'models/gltf/RobotExpressive/RobotExpressive.glb', function( gltf ) {
 
-					//model = gltf.scene;
-					//scene.add( model );
+					model = gltf.scene;
+					scene.add( model );
 
 					createGUI( model, gltf.animations );
 
@@ -116,8 +116,6 @@
 				stats = new Stats();
 				container.appendChild( stats.dom );
 
-				createCube();
-
 				initGL();
 
 			}
@@ -125,13 +123,6 @@
 			function initGL() {
 				gl = renderer.getContext();
 				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
-			}
-
-			function createCube() {
-				var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-				var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-				var cube = new THREE.Mesh( geometry, material );
-				scene.add( cube );
 			}
 
 			function createGUI( model, animations ) {
@@ -284,10 +275,6 @@
 				} else {
   					camera.projectionMatrix.fromArray(gl.getProjectMatrix());
   					camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(1, isHited));
-
-  					cube.rotation.x += 0.1;
-					cube.rotation.y += 0.1;
-
 					renderer.render( scene, camera );
 				}
 			}
