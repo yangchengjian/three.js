@@ -55,7 +55,6 @@
 
 			var container, stats, clock, gui, mixer, actions, activeAction, previousAction;
 			var camera, scene, renderer, model, face;
-			var cube;
 
 			var gl;
 			var isHited = -1;
@@ -90,10 +89,19 @@
 
 				// model
 
-                var geometry = new THREE.BoxGeometry( 10, 10, 10 );
-                var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-                cube = new THREE.Mesh( geometry, material );
-                scene.add( cube );
+				var loader = new THREE.GLTFLoader();
+				loader.load( 'models/gltf/RobotExpressive/RobotExpressive.glb', function( gltf ) {
+
+					model = gltf.scene;
+					scene.add( model );
+
+					createGUI( model, gltf.animations );
+
+				}, undefined, function( e ) {
+
+					console.error( e );
+
+				} );
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -261,16 +269,16 @@
 
 				//gl.drawBackground();
 
-                cube.rotation.x += 0.1;
-				cube.rotation.y += 0.1;
-
 				if (isHited < 0) {
-				    renderer.render( scene, camera );
+   					renderer.render( scene, camera );
    					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
 				} else {
   					camera.projectionMatrix.fromArray(gl.getProjectMatrix());
-  					camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(1, isHited));
-  					renderer.render( scene, camera );
+  					camera.matrixWorldInverse.fromArray(gl.getViewMatrix());
+
+  					model.matrixWorld.fromArray(gl.getModelMatrix(1, isHited));
+
+					renderer.render( scene, camera );
 				}
 			}
 
