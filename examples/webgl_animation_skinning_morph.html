@@ -55,6 +55,7 @@
 
 			var container, stats, clock, gui, mixer, actions, activeAction, previousAction;
 			var camera, scene, renderer, model, face;
+			var cube;
 
 			var gl;
 			var isHited = -1;
@@ -89,6 +90,10 @@
 
 				// model
 
+                var geometry = new THREE.BoxGeometry( 10, 10, 10 );
+                var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+                cube = new THREE.Mesh( geometry, material );
+                scene.add( cube );
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -103,8 +108,6 @@
 				stats = new Stats();
 				container.appendChild( stats.dom );
 
-                createCube();
-
 				initGL();
 
 			}
@@ -114,12 +117,6 @@
 				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
 			}
 
-            function createCube() {
-                var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-                var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-                var cube = new THREE.Mesh( geometry, material );
-                scene.add( cube );
-            }
 			function createGUI( model, animations ) {
 
 				var states = [ 'Idle', 'Walking', 'Running', 'Dance', 'Death', 'Sitting', 'Standing' ];
@@ -263,6 +260,9 @@
 			function renderAR() {
 
 				//gl.drawBackground();
+
+                cube.rotation.x += 0.1;
+				cube.rotation.y += 0.1;
 
                 renderer.render( scene, camera );
 
