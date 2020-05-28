@@ -275,15 +275,16 @@
 
 				//gl.drawBackground();
 
+				camera.projectionMatrix.fromArray(gl.getProjectMatrix());
+  				camera.matrixWorldInverse.fromArray(gl.getViewMatrix());
+
+				cube.matrix.fromArray(gl.getModelMatrix(3, 0));
+				cube.matrixAutoUpdate = false;
+
 				if (isHited < 0) {
    					renderer.render( scene, camera );
    					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
 				} else {
-  					camera.projectionMatrix.fromArray(gl.getProjectMatrix());
-  					camera.matrixWorldInverse.fromArray(gl.getViewMatrix());
-
-					cube.matrix.fromArray(gl.getModelMatrix(3, 0));
-					cube.matrixAutoUpdate = false;
 
 					model.matrix.fromArray(gl.getModelMatrix(1, isHited));
 					model.matrixAutoUpdate = false;
