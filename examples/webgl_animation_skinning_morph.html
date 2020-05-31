@@ -129,6 +129,7 @@
 			function initGL() {
 				gl = renderer.getContext();
 				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
+				gl.onConfigChanged(0, 1, 0, 0);
 			}
 
 			function createGUI( model, animations ) {
