@@ -194,13 +194,6 @@
 
 					//camera.lookAt( scene.position );
 
-					root.traverse( function ( object ) {
-
-						object.rotation.x = rx;
-						object.rotation.y = ry;
-						object.rotation.z = rz;
-
-					} );
 
 					renderer.render( scene, camera );
 				}
