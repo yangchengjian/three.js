@@ -17,12 +17,6 @@
 	<body>
 
 		<div id="container"></div>
-		<div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - webgl hemisphere light example<br/>
-			flamingo by <a href="http://mirada.com/">mirada</a> from <a href="http://ro.me">rome</a><br/><br/>
-			<button id="hemisphereButton">toggle hemisphere light</button>
-			<button id="directionalButton">toggle directional light</button>
-		</div>
 
 		<script type="x-shader/x-vertex" id="vertexShader">
 
@@ -56,6 +50,15 @@
 			}
 
 		</script>
+=======
+
+		<script src="../build/three.js"></script>
+
+		<script src="js/WebGL.js"></script>
+		<script src="js/libs/stats.min.js"></script>
+		<script src="js/loaders/GLTFLoader.js"></script>
+
+>>>>>>> r100_ar
 
 		<script type="module">
 
@@ -70,6 +73,9 @@
 			var mixers = [];
 			var stats;
 
+			var gl;
+			var isHited = -1;
+
 			var clock = new THREE.Clock();
 
 			init();
@@ -83,8 +89,6 @@
 				camera.position.set( 0, 0, 250 );
 
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
-				scene.fog = new THREE.Fog( scene.background, 1, 5000 );
 
 				// LIGHTS
 
@@ -94,6 +98,7 @@
 				hemiLight.position.set( 0, 50, 0 );
 				scene.add( hemiLight );
 
+<<<<<<< HEAD
 				hemiLightHelper = new THREE.HemisphereLightHelper( hemiLight, 10 );
 				scene.add( hemiLightHelper );
 
@@ -159,6 +164,8 @@
 
 				var sky = new THREE.Mesh( skyGeo, skyMat );
 				scene.add( sky );
+=======
+>>>>>>> r100_ar
 
 				// MODEL
 
@@ -168,13 +175,8 @@
 
 					var mesh = gltf.scene.children[ 0 ];
 
-					var s = 0.35;
+					var s = 0.035;
 					mesh.scale.set( s, s, s );
-					mesh.position.y = 15;
-					mesh.rotation.y = - 1;
-
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
 
 					scene.add( mesh );
 
@@ -186,7 +188,7 @@
 
 				// RENDERER
 
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: false } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
@@ -202,8 +204,19 @@
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
+<<<<<<< HEAD
 				var hemisphereButton = document.getElementById( 'hemisphereButton' );
 				hemisphereButton.addEventListener( 'click', function () {
+=======
+
+				initGL();
+			}
+
+			function initGL() {
+				gl = renderer.getContext();
+				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
+			}
+>>>>>>> r100_ar
 
 					hemiLight.visible = ! hemiLight.visible;
 					hemiLightHelper.visible = ! hemiLightHelper.visible;
@@ -250,10 +263,22 @@
 
 				}
 
-				renderer.render( scene, camera );
+				renderAR();
+
+				//renderer.render( scene, camera );
 
 			}
 
+			function renderAR() {
+				if (isHited < 0) {
+   					renderer.render( scene, camera );
+   					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
+				} else {
+  					camera.projectionMatrix.fromArray(gl.getProjectMatrix());
+  					camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(1, isHited));
+					renderer.render( scene, camera );
+				}
+			}
 		</script>
 	</body>
 </html>
