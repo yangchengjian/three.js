@@ -36,11 +36,17 @@
 
 			function init() {
 
-				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 150 );
-				//camera.position.z = 5000;
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 100 );
+				camera.position.set( - 5, 3, 10 );
+				camera.lookAt( new THREE.Vector3( 0, 2, 0 ) );
 
 				scene = new THREE.Scene();
 				//scene.background = new THREE.Color( 0xffffff );
+
+				var geometry1 = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+				var material1 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			    cube = new THREE.Mesh( geometry1, material1 );
+				scene.add( cube );
 
 				var geometry = new THREE.BoxBufferGeometry( 0.1, 0.1, 0.1 );
 				var material = new THREE.MeshNormalMaterial();
@@ -191,6 +197,9 @@
    					renderer.render( scene, camera );
    					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
 				} else {
+
+					cube.matrix.fromArray(gl.getModelMatrix(1, isHited));
+					cube.matrixAutoUpdate = false;
 
 					root.matrix.fromArray(gl.getModelMatrix(1, isHited));
 					root.matrixAutoUpdate = false;
