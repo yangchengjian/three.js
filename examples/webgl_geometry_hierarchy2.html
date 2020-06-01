@@ -185,7 +185,7 @@
 				var rz = Math.sin( time * 0.2 ) * 0.1;
 
 				camera.projectionMatrix.fromArray(gl.getProjectMatrix());
-  				camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(1, isHited));
+  				camera.matrixWorldInverse.fromArray(gl.getViewMatrix());
 
 				if (isHited < 0) {
    					renderer.render( scene, camera );
