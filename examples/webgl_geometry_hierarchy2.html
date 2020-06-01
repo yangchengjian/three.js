@@ -49,7 +49,7 @@
 				//root.position.x = 1000;
 				scene.add( root );
 
-				var amount = 200, object, parent = root;
+				var amount = 2, object, parent = root;
 
 				for ( var i = 0; i < amount; i ++ ) {
 
@@ -192,7 +192,7 @@
 					camera.projectionMatrix.fromArray(gl.getProjectMatrix());
   					camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(1, isHited));
 
-					camera.lookAt( scene.position );
+					//camera.lookAt( scene.position );
 
 					root.traverse( function ( object ) {
 
