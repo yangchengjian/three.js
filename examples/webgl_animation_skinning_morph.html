@@ -52,8 +52,8 @@
 				document.body.appendChild( container );
 
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 100 );
-				camera.position.set( - 5, 3, 10 );
-				camera.lookAt( new THREE.Vector3( 0, 2, 0 ) );
+				//camera.position.set( - 5, 3, 10 );
+				//camera.lookAt( new THREE.Vector3( 0, 2, 0 ) );
 
 				scene = new THREE.Scene();
 
@@ -109,7 +109,7 @@
 			function initGL() {
 				gl = renderer.getContext();
 				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
-				gl.onConfigChanged(0, 1, 0, 0);
+				gl.onConfigChanged(0, 1, 1, 0);
 			}
 
 			function createGUI( model, animations ) {
