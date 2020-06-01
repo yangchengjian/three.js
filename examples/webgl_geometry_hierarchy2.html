@@ -30,14 +30,14 @@
 			function initGL() {
 				gl = renderer.getContext();
 				gl.onDisplayChanged(0, window.innerWidth, window.innerHeight);
-				gl.onConfigChanged(0, 1, 0, 0);
+				gl.onConfigChanged(0, 1, 1, 0);
 			}
 
 
 			function init() {
 
-				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 15000 );
-				camera.position.z = 5000;
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 150 );
+				//camera.position.z = 5000;
 
 				scene = new THREE.Scene();
 				//scene.background = new THREE.Color( 0xffffff );
