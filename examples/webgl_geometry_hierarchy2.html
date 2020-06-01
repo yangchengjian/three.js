@@ -188,6 +188,16 @@
 				camera.projectionMatrix.fromArray(gl.getProjectMatrix());
   				camera.matrixWorldInverse.fromArray(gl.getViewMatrix());
 
+				//camera.lookAt( scene.position );
+
+				root.traverse( function ( object ) {
+
+					object.rotation.x = rx;
+					object.rotation.y = ry;
+					object.rotation.z = rz;
+
+				} );
+
 				if (isHited < 0) {
    					renderer.render( scene, camera );
    					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
