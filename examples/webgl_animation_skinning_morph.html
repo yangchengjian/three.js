@@ -36,7 +36,6 @@
 
 			var container, stats, clock, gui, mixer, actions, activeAction, previousAction;
 			var camera, scene, renderer, model, face;
-			var cube;
 
 			var gl;
 			var isHited = -1;
@@ -52,8 +51,8 @@
 				document.body.appendChild( container );
 
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 100 );
-				//camera.position.set( - 5, 3, 10 );
-				//camera.lookAt( new THREE.Vector3( 0, 2, 0 ) );
+				camera.position.set( - 5, 3, 10 );
+				camera.lookAt( new THREE.Vector3( 0, 2, 0 ) );
 
 				scene = new THREE.Scene();
 
@@ -84,11 +83,6 @@
 					console.error( e );
 
 				} );
-
-				var geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
-				var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			    cube = new THREE.Mesh( geometry, material );
-				scene.add( cube );
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -258,9 +252,6 @@
 
 				camera.projectionMatrix.fromArray(gl.getProjectMatrix());
   				camera.matrixWorldInverse.fromArray(gl.getViewMatrix());
-
-				cube.matrix.fromArray(gl.getModelMatrix(3, 0));
-				cube.matrixAutoUpdate = false;
 
 				if (isHited < 0) {
    					renderer.render( scene, camera );
