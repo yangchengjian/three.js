@@ -43,6 +43,9 @@
 				scene = new THREE.Scene();
 				//scene.background = new THREE.Color( 0xffffff );
 
+				var gridHelper = new THREE.GridHelper( 10, 20 );
+				scene.add( gridHelper );
+
 				var geometry = new THREE.BoxBufferGeometry( 0.1, 0.1, 0.1 );
 				var material = new THREE.MeshNormalMaterial();
 
@@ -184,8 +187,6 @@
 				var rx = Math.sin( time * 0.7 ) * 0.2;
 				var ry = Math.sin( time * 0.3 ) * 0.1;
 				var rz = Math.sin( time * 0.2 ) * 0.1;
-
-				gl.drawBackground();
 
 				//camera.projectionMatrix.fromArray(gl.getProjectMatrix());
   				//camera.matrixWorldInverse.fromArray(gl.getViewMatrix());
