@@ -197,13 +197,13 @@
 
 				} );
 
-				camera.projectionMatrix.fromArray(gl.getProjectMatrix());
-  				camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(1, isHited));
-
 				if (isHited < 0) {
    					renderer.render( scene, camera );
    					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
 				} else {
+
+					camera.projectionMatrix.fromArray(gl.getProjectMatrix());
+  					camera.matrixWorldInverse.fromArray(gl.getViewModelMatrix(1, isHited));
 
 					renderer.render( scene, camera );
 				}
