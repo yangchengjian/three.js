@@ -16,8 +16,6 @@
 
 			var camera, scene, renderer, stats, root;
 
-			var cube;
-
 			var gl;
 			var isHited = -1;
 
@@ -44,11 +42,6 @@
 
 				scene = new THREE.Scene();
 				//scene.background = new THREE.Color( 0xffffff );
-
-				var geometry1 = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
-				var material1 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			    cube = new THREE.Mesh( geometry1, material1 );
-				scene.add( cube );
 
 				var geometry = new THREE.BoxBufferGeometry( 0.1, 0.1, 0.1 );
 				var material = new THREE.MeshNormalMaterial();
@@ -207,9 +200,6 @@
    					renderer.render( scene, camera );
    					isHited = gl.onTouched(window.innerWidth/2, window.innerHeight/2);
 				} else {
-
-					cube.matrix.fromArray(gl.getModelMatrix(1, isHited));
-					cube.matrixAutoUpdate = false;
 
 					root.matrix.fromArray(gl.getModelMatrix(1, isHited));
 					root.matrixAutoUpdate = false;
